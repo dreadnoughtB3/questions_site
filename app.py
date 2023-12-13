@@ -5,7 +5,7 @@ import json
 from time import sleep
 from yaml.loader import SafeLoader
 
-with open('./config.yaml') as file:
+with open('./config.yaml', 'rb') as file:
     config = yaml.load(file, Loader=SafeLoader)
 questions = json.load(open('data/questions.json', 'r', encoding="utf-8"))
 user_data = json.load(open('data/user_data.json', 'r', encoding="utf-8"))
