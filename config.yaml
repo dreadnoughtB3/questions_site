@@ -6,11 +6,7 @@ credentials:
   usernames:
     mayonaka:
       name: mayonaka
-      password: $2b$12$ZkhkR3QVUGJIYcNe9V2K5encDx2wVuvkDQBuBHxhAfVzLOCQ1RZpS
-    test1:
-      email: test@exm.com
-      name: test1
-      password: $2b$12$bKMJZwJgzIR1H5MVrixtIOGnBVRqBFfZqJglurEwGBrsJRq2wb8du
+      password: $2b$12$9WMI1dsQUkE90nARHOkIJujvPjfr2T95jL6IWtpSZo0ZLSdVvn/5G
 preauthorized:
   emails:
   - melsby@gmail.com
