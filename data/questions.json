@@ -1,3 +1,12 @@
 {
-    "1":"A -> Q  \n`Jxu bqau yi qbie sqbbut [TUBUJUT] Fuqhb. Yji besqjyed yi ikhhekdtut ro cekdjqyd hqdwui.`"
+    "questions":{
+        "1":"`3271 -> 3299 -> [?] -> 3307`",
+        "2":"A -> Q  \n`Jxu bqau yi qbie sqbbut [TUBUJUT] Fuqhb. Yji besqjyed yi ikhhekdtut ro cekdjqyd hqdwui.`",
+        "3":"`You will guess that I'm out. But that does not justify the guess that I'm out.`"
+    },
+    "answers":{
+        "1":"3301",
+        "2":"バイカル湖",
+        "3":"outguess"
+    }
 }
