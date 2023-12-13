@@ -5,13 +5,13 @@ cookie:
 credentials:
   usernames:
     test1:
-      name: test1
+      name: mayonaka
       password: $2b$12$ZkhkR3QVUGJIYcNe9V2K5encDx2wVuvkDQBuBHxhAfVzLOCQ1RZpS
     test2:
       name: test2
       password: $2b$12$ZkhkR3QVUGJIYcNe9V2K5encDx2wVuvkDQBuBHxhAfVzLOCQ1RZpS
     aoneko906:
-      name: aoneko906
+      name: aoneko096
       password: $2b$12$pNJeX89FgjywkrTSBN5POuYb9.io7Zi61Y0DAw4CxlbHoj9Gj4LGS
     ヘルメス:
       name: ヘルメス
