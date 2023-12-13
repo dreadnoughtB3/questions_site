@@ -1,0 +1,15 @@
+cookie:
+  expiry_days: 10
+  key: some_signature_keys
+  name: some_cookie_name
+credentials:
+  usernames:
+    test1:
+      name: test1
+      password: $2b$12$ZkhkR3QVUGJIYcNe9V2K5encDx2wVuvkDQBuBHxhAfVzLOCQ1RZpS
+    test2:
+      name: test2
+      password: $2b$12$ZkhkR3QVUGJIYcNe9V2K5encDx2wVuvkDQBuBHxhAfVzLOCQ1RZpS
+preauthorized:
+  emails:
+  - melsby@gmail.com
