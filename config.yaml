@@ -4,21 +4,13 @@ cookie:
   name: some_cookie_name
 credentials:
   usernames:
-    test1:
+    mayonaka:
       name: mayonaka
       password: $2b$12$ZkhkR3QVUGJIYcNe9V2K5encDx2wVuvkDQBuBHxhAfVzLOCQ1RZpS
-    test2:
-      name: test2
-      password: $2b$12$ZkhkR3QVUGJIYcNe9V2K5encDx2wVuvkDQBuBHxhAfVzLOCQ1RZpS
-    aoneko906:
-      name: aoneko096
-      password: $2b$12$pNJeX89FgjywkrTSBN5POuYb9.io7Zi61Y0DAw4CxlbHoj9Gj4LGS
-    ヘルメス:
-      name: ヘルメス
-      password: $2b$12$AYUIfUXy8AQGUUdTnuT.bu.i5PDhsagsgWdodZ2DBSvaRQ6BH4Vdy
-    クルエ:
-      name: クルエ
-      password: $2b$12$lg4AiKpGuzMTf1y1L0pu1up9V1MYM2mNU96DJpmJBYOv8gUsxnaPa
+    test1:
+      email: test@exm.com
+      name: test1
+      password: $2b$12$bKMJZwJgzIR1H5MVrixtIOGnBVRqBFfZqJglurEwGBrsJRq2wb8du
 preauthorized:
   emails:
   - melsby@gmail.com
