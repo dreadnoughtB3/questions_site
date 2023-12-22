@@ -1,13 +1,14 @@
 import streamlit as st
 import streamlit_authenticator as stauth
-import yaml, csv
-from datetime import datetime, timezone, timedelta
+import yaml
+import datetime
+import pandas as pd
 from time import sleep
 from yaml.loader import SafeLoader
 
 with open('./config.yaml', 'rb') as file:
     config = yaml.load(file, Loader=SafeLoader)
-
+    
 authenticator = stauth.Authenticate(
     config['credentials'],
     config['cookie']['name'],
@@ -20,12 +21,13 @@ authenticator.login('ログイン', 'main')
 
 # ログイン済み
 if st.session_state["authentication_status"]:
+    df = pd.read_csv("data/user.csv")
     st.write('*Created by mayonaka4355*')
     st.write(f'>ログイン中のユーザー：*{st.session_state["name"]}*')
     st.divider()
     
-    if st.session_state["name"] == "mayonka":
-        pass
+    if st.session_state["name"] == "mayonaka":
+        st.dataframe(df)
     else:
         st.write(f"> ◖問題 [1/1]")
         st.write("Question - AES256:\n  ```6DGSO+04IoF/JtKVCB3TPxykZ1qZkS9dWeJdPXNYI77lqvropOHbXnszhIpOhlEpDXN8vX+6s/eC/9kvASDTNpAx5dvo2BzpzQwENxew833221LvYloaUYdYbKIY8WeUAbfKh+ggD0TWmLEkH1TbpMmgfwKOYb/j0hGG+LHltmRzdAX+u1vPQdVS6ppFV11zLYm/jP+a83+DUz1Msd6OCQ==```")
@@ -39,10 +41,13 @@ if st.session_state["authentication_status"]:
             if inputText_A == "ivan":
                 st.warning('正解')
                 st.balloons()
-                with open('data/user.csv', 'a') as f:
-                    writer = csv.writer(f)
-                    writer.writerow([st.session_state["name"], datetime.timedelta(hours=9)])
+                df_append = pd.DataFrame(data=[[st.session_state["name"],datetime.datetime.now(),1]],columns=["name","date","clear"])
+                print(df)
+                print(df_append)
+                df = pd.concat([df,df_append])
+                df.to_csv('data/user.csv')
                 sleep(3)
+                st.rerun()
             else:
                 st.warning('不正解')
                 sleep(3)
