@@ -1,16 +1,12 @@
 import streamlit as st
 import streamlit_authenticator as stauth
-import yaml
-import json
-import datetime
+import yaml, csv
+from datetime import datetime, timezone, timedelta
 from time import sleep
 from yaml.loader import SafeLoader
 
 with open('./config.yaml', 'rb') as file:
     config = yaml.load(file, Loader=SafeLoader)
-questions = json.load(open('data/questions.json', 'r', encoding="utf-8"))
-user_data = json.load(open('data/user_data.json', 'r', encoding="utf-8"))
-correct_answerer = json.load(open('data/correct_answerer.json', 'r', encoding="utf-8"))
 
 authenticator = stauth.Authenticate(
     config['credentials'],
@@ -24,75 +20,33 @@ authenticator.login('ログイン', 'main')
 
 # ログイン済み
 if st.session_state["authentication_status"]:
-    questions_prog = user_data[st.session_state["name"]]
-    if questions_prog == 11:
-        prog_text = "*COMPLETED*"
-    else:
-        prog_text = f"*{questions_prog}/10*"
     st.write('*Created by mayonaka4355*')
-    st.write(f'>ログイン中のユーザー：*{st.session_state["name"]}*  \n>現在の問題進捗　　　：{prog_text}')
+    st.write(f'>ログイン中のユーザー：*{st.session_state["name"]}*')
     st.divider()
     
-    if st.session_state["name"] == "mayonaka":
-        st.json(correct_answerer)
-        
-        json_string_1 = json.dumps(correct_answerer, indent=2, ensure_ascii=False)
-        json_string_2 = json.dumps(user_data, indent=2, ensure_ascii=False)
-        
-        st.download_button(
-            label="correct_answerer.json",
-            file_name="correct_answerer.json",
-            mime="application/json",
-            data=json_string_1,
-        )
-        st.download_button(
-            label="user_data.json",
-            file_name="user_data.json",
-            mime="application/json",
-            data=json_string_2,
-        )
-        try:
-            if authenticator.register_user('ユーザー追加', preauthorization=False):
-                with open('./config.yaml', 'w') as file:
-                    yaml.dump(config, file, default_flow_style=False)
-                st.success('User registered successfully')
-        except Exception as e:
-            st.error(e)
-        new_user_name = st.text_input('新規ユーザー名')
-        if st.button("追加"):
-            if new_user_name in user_data:
-                st.warning("既にユーザー名が登録されています")
-            else:
-                user_data[new_user_name] = 1
-                print(user_data)
-                with open('data/user_data.json', 'w', encoding="utf-8") as f:
-                    json.dump(user_data, f, indent=2, ensure_ascii=False)
-        
-    elif questions_prog == 11:
-        st.write("`全問題終了。お疲れさまでした。`")
+    if st.session_state["name"] == "mayonka":
+        pass
     else:
-        st.write(f"> ◖問題[{questions_prog}/10]")
-        question_data = questions["questions"][str(questions_prog)]
-        st.write(question_data)
-        
+        st.write(f"> ◖問題 [1/1]")
+        st.write("Question - AES256:\n  ```6DGSO+04IoF/JtKVCB3TPxykZ1qZkS9dWeJdPXNYI77lqvropOHbXnszhIpOhlEpDXN8vX+6s/eC/9kvASDTNpAx5dvo2BzpzQwENxew833221LvYloaUYdYbKIY8WeUAbfKh+ggD0TWmLEkH1TbpMmgfwKOYb/j0hGG+LHltmRzdAX+u1vPQdVS6ppFV11zLYm/jP+a83+DUz1Msd6OCQ==```")
+        st.write("Hint: `K(C)aiser Andrew Jackson says: ᚢᚼᛆᛔᚵᛂᛆᚡᛂᚢᛍᚡᛔ-NOT=?`")
+        st.write("**ドミニカ共和国(DOM) → エチオピア(ETH) → X → フランス(FRA)**")
+        st.write("Hint: `G↑ P← I↓ T→ P← XVIII`")
+        st.write("`0x:57 68 65 72 65 20 69 73 20 74 68 65 20 63 61 70 69 74 61 6c 20 63 69 74 79 20 6f 66 20 58 3f (a=61)`\n  `yhork>lhvfhnqmkxuccpfvlnufannspbu2dwV`")
         inputText_A = st.text_input('回答記入欄',placeholder="回答")
         # 回答ボタンを入力した時
         if st.button("回答する"):
-            if inputText_A == questions["answers"][str(questions_prog)]:
-                user_data[st.session_state["name"]] += 1
-                with open('data/user_data.json', 'w', encoding="utf-8") as f:
-                    json.dump(user_data, f, indent=2, ensure_ascii=False)
-                current_time = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
-                correct_answerer[str(questions_prog)][st.session_state["name"]] = {"name":st.session_state["name"], "date":str(current_time)}
-                with open('data/correct_answerer.json', 'w', encoding="utf-8") as file:
-                    sleep(1)
-                    json.dump(correct_answerer, file, indent=2, ensure_ascii=False)
+            if inputText_A == "ivan":
                 st.warning('正解')
                 st.balloons()
-                sleep(2)
-                st.rerun()
+                with open('data/user.csv', 'a') as f:
+                    writer = csv.writer(f)
+                    writer.writerow([st.session_state["name"], datetime.timedelta(hours=9)])
+                sleep(3)
             else:
                 st.warning('不正解')
+                sleep(3)
+    authenticator.logout('ログアウト', 'main', key='unique_key')
         
 # ユーザー名/パスワードが違う
 elif st.session_state["authentication_status"] is False:
