@@ -22,12 +22,16 @@ authenticator.login('ログイン', 'main')
 # ログイン済み
 if st.session_state["authentication_status"]:
     df = pd.read_csv("data/user.csv")
+    df.set_index("id", inplace=True)
+    name = st.session_state["name"]
     st.write('*Created by mayonaka4355*')
     st.write(f'>ログイン中のユーザー：*{st.session_state["name"]}*')
     st.divider()
     
-    if st.session_state["name"] == "mayonaka":
+    if name == "mayonaka":
         st.dataframe(df)
+    elif name in df["name"].values:
+        st.write("> `クリアおめでとうございます。`")
     else:
         st.write(f"> ◖問題 [1/1]")
         st.write("Question - AES256:\n  ```6DGSO+04IoF/JtKVCB3TPxykZ1qZkS9dWeJdPXNYI77lqvropOHbXnszhIpOhlEpDXN8vX+6s/eC/9kvASDTNpAx5dvo2BzpzQwENxew833221LvYloaUYdYbKIY8WeUAbfKh+ggD0TWmLEkH1TbpMmgfwKOYb/j0hGG+LHltmRzdAX+u1vPQdVS6ppFV11zLYm/jP+a83+DUz1Msd6OCQ==```")
@@ -41,10 +45,7 @@ if st.session_state["authentication_status"]:
             if inputText_A == "ivan":
                 st.warning('正解')
                 st.balloons()
-                df_append = pd.DataFrame(data=[[st.session_state["name"],datetime.datetime.now(),1]],columns=["name","date","clear"])
-                print(df)
-                print(df_append)
-                df = pd.concat([df,df_append])
+                df.loc["0"] = [name,datetime.datetime.utcnow() + datetime.timedelta(hours=9)]
                 df.to_csv('data/user.csv')
                 sleep(3)
                 st.rerun()
