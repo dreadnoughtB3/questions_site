@@ -4,7 +4,6 @@ import yaml
 import datetime
 import sqlite3
 import json
-import pandas as pd
 from time import sleep
 from yaml.loader import SafeLoader
 
@@ -57,12 +56,32 @@ if st.session_state["authentication_status"]:
     st.write('管理者画面')
     dbdata = cur.execute('SELECT * from answers')
     st.dataframe(dbdata)
+    # 新規ユーザー追加
+    try:
+      if authenticator.register_user('ユーザー追加', preauthorization=False):
+        with open('./config.yaml', 'w') as file:
+          yaml.dump(config, file, default_flow_style=False)
+        st.success('User registered successfully')
+        sleep(4)
+    except Exception as e:
+      st.error(e)
+      sleep(4)
+    new_user_name = st.text_input('DB登録')
+    if st.button("追加"):
+      if get_db('SELECT progress FROM user_progress WHERE username = ?', (new_user_name,)).fetchone() == None:
+        insert_db(f"INSERT INTO user_progress VALUES('{new_user_name}', 1)")
+        st.success('DBに追加しました')
+      else:
+        st.warning('既に存在しています')
+
   else:
     user_progress = get_db('SELECT progress FROM user_progress WHERE username = ?', (st.session_state["name"],)).fetchone()[0]
     if user_progress < 5:
       question_body = data[str(user_progress)]["text"]
       st.write(f"> ◖問題 [{user_progress}/4]")
       st.write(question_body)
+      if user_progress == 4:
+        st.image('static/problem_4.jpg', caption="Figure.1")
       inputText_A = st.text_input('回答記入欄',placeholder="回答")
       # 回答ボタンを入力した時
       if st.button("回答する"):

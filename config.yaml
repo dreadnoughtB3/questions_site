@@ -7,6 +7,10 @@ credentials:
     mayonaka:
       name: mayonaka
       password: $2b$12$1FF.ZaeJe1xTJs/SfMIc.OA0zX6WeCDZC6Lp5c9SzLaWtNYuyZaeq
+    test1:
+      email: test1@mail
+      name: test1
+      password: $2b$12$uosoHDuHRAmm9B8xKHS9BuLYTuovnc8zNN1dAXT94aD/GAB9jjkiS
 preauthorized:
   emails:
   - melsby@gmail.com
