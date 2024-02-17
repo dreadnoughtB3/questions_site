@@ -1,45 +1,12 @@
 cookie:
-  expiry_days: 10
+  expiry_days: 2
   key: some_signature_keys
   name: some_cookie_name
 credentials:
   usernames:
     mayonaka:
       name: mayonaka
-      password: $2b$12$9WMI1dsQUkE90nARHOkIJujvPjfr2T95jL6IWtpSZo0ZLSdVvn/5G
-    mitabi:
-      name: mitabi
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    lin:
-      name: lin
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    sion:
-      name: sion
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    ai:
-      name: ai
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    hebi:
-      name: hebi
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    noir:
-      name: noir
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    kesera:
-      name: kesera
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    hashin:
-      name: hashin
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    hotaru:
-      name: hotaru
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    moon:
-      name: moon
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
-    selena: 
-      name: selena
-      password: $2b$12$lxcJoDMWSCHy5vbPRA8CruEVIHqcw3QulNdSVFLlNloZSg937cUt2
+      password: $2b$12$1FF.ZaeJe1xTJs/SfMIc.OA0zX6WeCDZC6Lp5c9SzLaWtNYuyZaeq
 preauthorized:
   emails:
   - melsby@gmail.com

@@ -2,61 +2,90 @@ import streamlit as st
 import streamlit_authenticator as stauth
 import yaml
 import datetime
+import sqlite3
+import json
 import pandas as pd
 from time import sleep
 from yaml.loader import SafeLoader
 
 with open('./config.yaml', 'rb') as file:
     config = yaml.load(file, Loader=SafeLoader)
+questions = open('data/questions.json', 'r', encoding='utf8')
+data = json.load(questions)
+con = sqlite3.connect('db.sqlite3')
+cur = con.cursor()
+
+JST = datetime.timezone(datetime.timedelta(hours=9), 'JST')  
+    
+def get_db(query, param):
+    global con, cur
+    res = cur.execute(query, param)
+    return res
+
+def insert_db(query):
+    global con, cur
+    cur.execute(query)
+    con.commit()
+    
+def update_db(query):
+    global con, cur
+    cur.execute(query)
+    con.commit()
+    
+def get_current_time():
+  global JST
+  return str(datetime.datetime.now(JST))
     
 authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
+  config['credentials'],
+  config['cookie']['name'],
+  config['cookie']['key'],
+  config['cookie']['expiry_days'],
+  config['preauthorized']
 )
 st.header(body="◍STELLARIA CHRONICLE",divider="grey")
 authenticator.login('ログイン', 'main')
 
 # ログイン済み
 if st.session_state["authentication_status"]:
-    df = pd.read_csv("data/user.csv")
-    df.set_index("id", inplace=True)
-    name = st.session_state["name"]
-    st.write('*Created by mayonaka4355*')
-    st.write(f'>ログイン中のユーザー：*{st.session_state["name"]}*')
-    st.divider()
+  name = st.session_state["name"]
+  st.write('*Created by mayonaka4355*')
+  st.write(f'>ログイン中のユーザー：*{st.session_state["name"]}*')
+  st.divider()
     
-    if name == "mayonaka":
-        st.dataframe(df)
-    elif name in df["name"].values:
-        st.write("> `クリアおめでとうございます。`")
+  if name == "mayonaka":
+    st.write('管理者画面')
+    dbdata = cur.execute('SELECT * from answers')
+    st.dataframe(dbdata)
+  else:
+    user_progress = get_db('SELECT progress FROM user_progress WHERE username = ?', (st.session_state["name"],)).fetchone()[0]
+    if user_progress < 5:
+      question_body = data[str(user_progress)]["text"]
+      st.write(f"> ◖問題 [{user_progress}/4]")
+      st.write(question_body)
+      inputText_A = st.text_input('回答記入欄',placeholder="回答")
+      # 回答ボタンを入力した時
+      if st.button("回答する"):
+        if inputText_A:
+          current_time = get_current_time()
+          insert_db(f'INSERT INTO answers VALUES("{st.session_state["name"]}","{user_progress}問目","{inputText_A}","{current_time}")')
+          if inputText_A == data[str(user_progress)]["answer"]:
+            st.warning('正解')
+            st.balloons()
+            sleep(1)
+            update_db(f'UPDATE user_progress SET progress = {user_progress + 1} WHERE username = "{st.session_state["name"]}"')
+            sleep(2)
+            st.rerun()
+          else:
+            st.warning('不正解')
+            sleep(3)
     else:
-        st.write(f"> ◖問題 [1/1]")
-        st.write("Question - AES256:\n  ```6DGSO+04IoF/JtKVCB3TPxykZ1qZkS9dWeJdPXNYI77lqvropOHbXnszhIpOhlEpDXN8vX+6s/eC/9kvASDTNpAx5dvo2BzpzQwENxew833221LvYloaUYdYbKIY8WeUAbfKh+ggD0TWmLEkH1TbpMmgfwKOYb/j0hGG+LHltmRzdAX+u1vPQdVS6ppFV11zLYm/jP+a83+DUz1Msd6OCQ==```")
-        st.write("Hint: `K(C)aiser Andrew Jackson says: ᚢᚼᛆᛔᚵᛂᛆᚡᛂᚢᛍᚡᛔ-NOT=?`")
-        st.write("**ドミニカ共和国(DOM) → エチオピア(ETH) → X → フランス(FRA)**")
-        st.write("Hint: `G↑ P← I↓ T→ P← XVIII`")
-        st.write("`0x:57 68 65 72 65 20 69 73 20 74 68 65 20 63 61 70 69 74 61 6c 20 63 69 74 79 20 6f 66 20 58 3f (a=61)`\n  `yhork>lhvfhnqmkxuccpfvlnufannspbu2dwV`")
-        inputText_A = st.text_input('回答記入欄',placeholder="回答")
-        # 回答ボタンを入力した時
-        if st.button("回答する"):
-            if inputText_A == "ivan":
-                st.warning('正解')
-                st.balloons()
-                df.loc["0"] = [name,datetime.datetime.utcnow() + datetime.timedelta(hours=9)]
-                df.to_csv('data/user.csv')
-                sleep(3)
-                st.rerun()
-            else:
-                st.warning('不正解')
-                sleep(3)
-    authenticator.logout('ログアウト', 'main', key='unique_key')
+      st.write("全問正解おめでとうございます。")
+  authenticator.logout('ログアウト', 'main', key='unique_key')
         
 # ユーザー名/パスワードが違う
 elif st.session_state["authentication_status"] is False:
-    st.error('ユーザー名かパスワードが間違っています')
+  st.error('ユーザー名かパスワードが間違っています')
 # ログインしていない
 elif st.session_state["authentication_status"] is None:
-    st.warning('ユーザー名とパスワードを入力してください')
+  st.warning('ユーザー名とパスワードを入力してください')
