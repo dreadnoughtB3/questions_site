@@ -58,7 +58,7 @@ if st.session_state["authentication_status"]:
     st.dataframe(dbdata)
     # 新規ユーザー追加
     try:
-      if authenticator.register_user('ユーザー追加', preauthorization=False):
+      if authenticator.register_user(location="main", preauthorization=False):
         with open('./config.yaml', 'w') as file:
           yaml.dump(config, file, default_flow_style=False)
         st.success('User registered successfully')
