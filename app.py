@@ -43,7 +43,7 @@ authenticator = stauth.Authenticate(
   config['preauthorized']
 )
 st.header(body="◍STELLARIA CHRONICLE",divider="grey")
-authenticator.login('ログイン', 'main')
+authenticator.login(location='main')
 
 # ログイン済み
 if st.session_state["authentication_status"]:
