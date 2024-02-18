@@ -1,5 +1,5 @@
 cookie:
-  expiry_days: 2
+  expiry_days: 10
   key: some_signature_keys
   name: some_cookie_name
 credentials:
@@ -7,6 +7,21 @@ credentials:
     mayonaka:
       name: mayonaka
       password: $2b$12$sx5nbsZbyXTXkwB3cpHszuXW3PDnoR5GeDtcEke8k.15UMEliGcFG
+    siina:
+      name: siina
+      password: $2b$12$TWeG/341g1bku3NWphU4jOw0G8BPho7VmRRqaXC67CUsjMngSN5ea
+    rin:
+      name: rin
+      password: $2b$12$8woQZbVgwOwPjwj3whhnlOEUS6Bzs51aoxKGZmFcMIru/YaSOw.cG
+    hermes: 
+      name: hermes
+      password: $2b$12$SYtuRzEA730ckARvGxlJ2.CIgH.MNl6FMiskHcNuXs5HPYZ2zBK1.
+    hebi:
+      name: hebi
+      password: $2b$12$upFLOvSEYfrLi7Swb2nkQOYTc6Wmiz7d1mQT4ugQnvwisGL6.xnNC
+    aizena3:
+      name: aizena3
+      password: $2b$12$gAQse4INGF/humXUMhajMed5yzc3ulEeDK/zjavOEBw.qg3SkzMm6
 preauthorized:
   emails:
   - melsby@gmail.com
