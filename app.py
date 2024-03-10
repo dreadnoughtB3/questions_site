@@ -73,15 +73,14 @@ if st.session_state["authentication_status"]:
         st.success('DBに追加しました')
       else:
         st.warning('既に存在しています')
+      sleep(4)
 
   else:
     user_progress = get_db('SELECT progress FROM user_progress WHERE username = ?', (st.session_state["name"],)).fetchone()[0]
-    if user_progress < 5:
+    if user_progress < 9:
       question_body = data[str(user_progress)]["text"]
-      st.write(f"> ◖問題 [{user_progress}/4]")
+      st.write(f"> ◖問題 [{user_progress}/8]")
       st.write(question_body)
-      if user_progress == 4:
-        st.image('static/problem_4.jpg', caption="Figure.1")
       inputText_A = st.text_input('回答記入欄',placeholder="回答")
       # 回答ボタンを入力した時
       if st.button("回答する"):
@@ -99,7 +98,7 @@ if st.session_state["authentication_status"]:
             st.warning('不正解')
             sleep(3)
     else:
-      st.write("全問正解おめでとうございます。")
+      st.write("全問正解おめでとうございます。やったね！")
   authenticator.logout('ログアウト', 'main', key='unique_key')
         
 # ユーザー名/パスワードが違う

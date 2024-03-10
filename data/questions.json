@@ -1,18 +1,34 @@
 {
     "1":{
-        "text":"`その城は黒の城壁に囲まれ、三つの赤い旗を持っていた。城が聳え立つカレドニアの地において、人々は知識を三つの本に収めたという。`",
-        "answer":"ブリタニカ百科事典"
+        "text":"1886年に作られた銅製の乙女の名前は？",
+        "answer":"自由の女神"
     },
     "2":{
-        "text":"```\nmoscow = 13151931523\ntokyo = 2015112515\nberlin = 251812914\n20961515181649123215 = ?\n \n4347677123717236741 = ?",
-        "answer":"nostalgism"
+        "text":"伯林の別の読み方は？",
+        "answer":"ベルリン"
     },
     "3":{
-        "text":"`23の月が鏡合わせに重なるとき、君はそこに二つのアルファベットと図を見出した。`\n```\n001001011101\n101100011000\n=aHR0cHM6Ly9pbWd1ci5jb20vYS84cmlqdlJP",
-        "answer":"リン"
+        "text":"cat=3120, dog=4157, pet=?",
+        "answer":"16520"
     },
     "4":{
-        "text":"`声が鳴り響く: ワインを開き、中を空にしてしまえ！`\n```\n奇妙なメモが手に握られている：「esrever xkrvrciixrkviocixrokvockiv」\nA = Record\nB = Diagonal\nC = Meal\nD = Home Front\nE = Weight + Old Type\nF = Surrender\nG = Ｍonster + August\nH = Herring\n\n並び順：ABCDEFGHF",
-        "answer":"vanitas"
+        "text":" 3人の実力者による政権運営の事を何と言う?",
+        "answer":"三頭政治"
+    },
+    "5":{
+        "text":"月とチョコ、共通する単語は?\n ヒント:カタカナ3文字",
+        "answer":"アポロ"
+    },
+    "6":{
+        "text":"世界で2番目に大きな国は？",
+        "answer":"カナダ"
+    },
+    "7":{
+        "text":"Hから始まりDで終わる、9文字の看板がある都市の名前は？",
+        "answer":"ロサンゼルス"
+    },
+    "8":{
+        "text":"ホモ・サピエンスとはどういう意味ですか？",
+        "answer":"賢い人間"
     }
 }

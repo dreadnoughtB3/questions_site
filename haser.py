@@ -1,3 +1,3 @@
 import streamlit_authenticator as stauth
-hashed_passwords = stauth.Hasher(['aizena3']).generate()
+hashed_passwords = stauth.Hasher(['password']).generate()
 print(hashed_passwords)

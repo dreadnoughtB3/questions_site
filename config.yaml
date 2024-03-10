@@ -6,22 +6,22 @@ credentials:
   usernames:
     mayonaka:
       name: mayonaka
-      password: $2b$12$sx5nbsZbyXTXkwB3cpHszuXW3PDnoR5GeDtcEke8k.15UMEliGcFG
+      password: $2b$12$0x7F24lTvySVXtlUENgb/ezfcJq7rqxny4F74e3cna3wCE/C49mRm
     siina:
       name: siina
-      password: $2b$12$TWeG/341g1bku3NWphU4jOw0G8BPho7VmRRqaXC67CUsjMngSN5ea
+      password: $2b$12$0x7F24lTvySVXtlUENgb/ezfcJq7rqxny4F74e3cna3wCE/C49mRm
     rin:
       name: rin
-      password: $2b$12$8woQZbVgwOwPjwj3whhnlOEUS6Bzs51aoxKGZmFcMIru/YaSOw.cG
+      password: $2b$12$0x7F24lTvySVXtlUENgb/ezfcJq7rqxny4F74e3cna3wCE/C49mRm
     hermes: 
       name: hermes
-      password: $2b$12$SYtuRzEA730ckARvGxlJ2.CIgH.MNl6FMiskHcNuXs5HPYZ2zBK1.
+      password: $2b$12$0x7F24lTvySVXtlUENgb/ezfcJq7rqxny4F74e3cna3wCE/C49mRm
     hebi:
       name: hebi
-      password: $2b$12$upFLOvSEYfrLi7Swb2nkQOYTc6Wmiz7d1mQT4ugQnvwisGL6.xnNC
+      password: $2b$12$0x7F24lTvySVXtlUENgb/ezfcJq7rqxny4F74e3cna3wCE/C49mRm
     aizena3:
       name: aizena3
-      password: $2b$12$gAQse4INGF/humXUMhajMed5yzc3ulEeDK/zjavOEBw.qg3SkzMm6
+      password: $2b$12$0x7F24lTvySVXtlUENgb/ezfcJq7rqxny4F74e3cna3wCE/C49mRm
 preauthorized:
   emails:
   - melsby@gmail.com
